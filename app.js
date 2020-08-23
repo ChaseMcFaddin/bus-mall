@@ -43,30 +43,49 @@ function randomNumber(max) {
   return Math.floor(Math.random() * max); //excludes 20//
 }
 
-function renderImages() {
-  var leftImg = imgArray[randomNumber(imgArray.length)];
-  var centerImg = imgArray[randomNumber(imgArray.length)];
-  var rightImg = imgArray[randomNumber(imgArray.length)];
-
-  while (leftImg === centerImg, leftImg === rightImg) {
-    leftImg = imgArray[randomNumber(imgArray.length)];
-    while (centerImg === rightImg)
-      centerImg = imgArray[randomNumber(imgArray.length)];
+function render() {
+  var imgOne = imgArray[randomNumber(imgArray.length)];
+  var imgTwo = imgArray[randomNumber(imgArray.length)];
+  var imgThree = imgArray[randomNumber(imgArray.length)];
+  while (imgOne === imgTwo || imgOne === imgThree || imgTwo === imgThree) {
+    imgOne = imgArray[randomNumber(imgArray.length)];
   }
-
-  // leftImg.src = leftImg.src;
-  // centerImgEl.src = centerImg.src;
-  // rightImgEl.src = rightImg.src;
-
-  // leftImg.alt = leftImg.name;
-  // centerImgEl.alt = centerImg.name;
-  // rightImgEl.alt = rightImg.name;
-
-  leftImg.views++;
-  centerImg.views++;
-  rightImg.views++;
-
+  // ------------- tried to run two different while loops ----------
+  //   imgTwo = imgArray[randomNumber(imgArray.length)];
+  // }
+  // while (imgOne === imgThree, imgTwo === imgThree) {
+  //   imgThree = imgArray[randomNumber(imgArray.length)];
+  leftImg.src = imgOne.src;
+  centerImg.src = imgTwo.src;
+  rightImg.src = imgThree.src;
+  leftImg.alt = imgOne.name;
+  centerImg.alt = imgTwo.name;
+  rightImg.alt = imgThree.name;
+  imgOne.views++;
+  imgTwo.views++;
+  imgThree.views++;
 }
+
+// function render() {
+//   var imgOne = imgArray[randomNumber(imgArray.length)];
+//   var imgTwo = imgArray[randomNumber(imgArray.length)];
+//   while (imgOne === imgTwo) {
+//     imgTwo = imgArray[randomNumber(imgArray.length)];
+//   }
+//   var imgThree = imgArray[randomNumber(imgArray.length)];
+//   while (imgOne === imgThree, imgTwo === imgThree) {
+//     imgThree = imgArray[randomNumber(imgArray.length)];
+//   }
+//   leftImg.src = imgOne.src;
+//   centerImg.src = imgTwo.src;
+//   rightImg.src = imgThree.src;
+//   leftImg.alt = imgOne.name;
+//   centerImg.alt = imgTwo.name;
+//   rightImg.alt = imgThree.name;
+//   imgOne.views++;
+//   imgTwo.views++;
+//   imgThree.views++;
+// }
 
 leftImg.addEventListener('click', eventHandler);
 centerImg.addEventListener('click', eventHandler);
@@ -77,13 +96,12 @@ function eventHandler(e) {
   for (var i = 0; i < imgArray.length; i++) {
     if (imgArray[i].name === e.target.alt) {
       imgArray[i].clicks++;
-      renderImages();
+      render();
     }
   }
-
 }
 
-renderImages;
+render();
 
 
 
