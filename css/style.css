@@ -1,0 +1,15 @@
+
+body {
+  width: 960px;
+  background-image: url(../img/busmall.jpg);
+  background-size: inherit;
+  background-repeat: no-repeat;
+}
+
+
+
+main img {
+  width: 200px;
+  height: 200px;
+}
+
