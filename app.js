@@ -1,10 +1,14 @@
 'use strict';
 
+// global variables //
 var imgArray = [];
 
 var leftImg = document.getElementById('image1');
 var centerImg = document.getElementById('image2');
 var rightImg = document.getElementById('image3');
+
+
+
 
 function SaleItems(name, src) {
   this.views = 0;
@@ -30,12 +34,12 @@ new SaleItems('pen', './img/pen.jpg');
 new SaleItems('pet-sweep', './img/pet-sweep.jpg');
 new SaleItems('scissors', './img/scissors.jpg');
 new SaleItems('shark', './img/shark.jpg');
+new SaleItems('sweep', './img/sweep.png');
+new SaleItems('tauntaun', './img/tauntaun.jpg');
 new SaleItems('unicorn', './img/unicorn.jpg');
 new SaleItems('usb', './img/usb.gif');
 new SaleItems('water-can', './img/water-can.jpg');
-new SaleItems('tauntaun', './img/tauntaun.jpg');
 new SaleItems('wine-glass', './img/wine-glass.jpg');
-new SaleItems('sweep', './img/sweep.png');
 
 console.log(imgArray);
 
@@ -103,11 +107,79 @@ function eventHandler(e) {
 
 render();
 
+function resultsChart() {
+  var clicksArray = [];
+  var viewsArray = [];
+  var namesArray = [];
+}
+for (var i = 0; i < imgArray.length; i++) {
+  namesArray.push(imgArray[i].name);
+  clicksArray.push(imgArray[i].clicks);
+  viewsArray.push(imgArray[i].views);
+}
 
 
-
-
-
+var iHopeThisWorks = {
+  type: 'bar',
+  data: {
+    labels: namesArray,
+    datasets: [{
+      label: '# of Votes',
+      data: clicksArray,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      hoverBackgroundColor: 'teal',
+      borderWidth: 1
+    }, {
+      label: '# of Votes',
+      data: viewsArray,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      hoverBackgroundColor: 'silver',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    },
+    responsive: false,
+  }
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, iHopeThisWorks); //eslint-disable-line
+};
 
 
 
