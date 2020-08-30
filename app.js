@@ -186,8 +186,55 @@ var iHopeThisWorks = {
 
 
 
+// ----------------------- local storage ---------------------------------//
+
+// var myContainer = document.getElementById('container');
+
+// var siteVisitCount = 0;
+// siteVisitCount = localStorage.getItem('visitCount');
+// siteVisitCount++;
+
+// var paragraph = document.createElement('p');
+// paragraph.textContent = `this site has been visited ${siteVisitCount} times!`
+// myContainer.appendChild(paragraph);
+
+// // setting item to local storage takes TWO parameters key & value
+// // 1. key - a string
+// // 2. value = THE DATA
+// localStorage.setItem('visitCount',siteVisitCount);
+
+// // JSON == javaScript Object Notation
 
 
+// renderImages();
+// if (clicks === maxClicks){
+//   myContainer.removeEventListener('click', handleClick);
+//   renderChart();
+//   renderList();
+//   // need to 'parse data here FIRST
+//   // localstorage.setItem('gaots', allGoats);
+//   // does this 
+// }
+
+// // in JavaScript I can stringify things
+// var stringifiedGoats = JSON.stringifiedGoats;
+// console.log(stringifiedGoats);
+// localStorage.setItem('savedGoats', stringifiedGoats);
+
+// // JSON.parse
+// retrievedGoats = localStorage.getItem('savedGoats');
+
+// var parsedRetrievedGoats = JSON.parse(retrievedGoats);
+
+// // if local storage exists use storage
+// // else instantiate goats
+
+// if (retrievedGoats) {
+//   allGoats = JSON.parse(retrievedGoats);
+// } else {
+//   newGoats('....');
+//   newGoats('....');
+// }
 
 
 
