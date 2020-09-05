@@ -5,12 +5,25 @@ body {
   background-size: inherit;
   background-repeat: no-repeat;
   background-color: lightslategray;
+  color: whitesmoke;
 }
 
 
+h1 {
+  margin: 15px;
+  padding: 25px;
+  color: whitesmoke;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+section {
+  width: 960px;
+  padding: 25px;
+}
 
 main img {
-  width: 200px;
+  width: 300px;
   height: 200px;
 }
 

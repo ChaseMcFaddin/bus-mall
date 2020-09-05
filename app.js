@@ -68,23 +68,38 @@ function createRenderQueue() {
     }
     renderQueue.unshift(i);
   }
-  console.log(renderQueue);
 }
 
 function renderimg() {
   createRenderQueue();
 
-  leftImg.src = imgArray[renderQueue[0]].src;
-  leftImg.alt = imgArray[renderQueue[0]].name;
-  imgArray[renderQueue[0]].viewed++;
+  var imgElOne = imgArray[renderQueue[0]];
+  var imgElTwo = imgArray[renderQueue[1]];
+  var imgElThree = imgArray[renderQueue[2]];
 
-  centerImg.src = imgArray[renderQueue[1]].src;
-  centerImg.alt = imgArray[renderQueue[1]].name;
-  imgArray[renderQueue[1]].viewed++;
+  leftImg.src = imgElOne.src;
+  leftImg.alt = imgElOne.name;
+  imgElOne.viewed++;
 
-  rightImg.src = imgArray[renderQueue[2]].src;
-  rightImg.alt = imgArray[renderQueue[2]].name;
-  imgArray[renderQueue[2]].viewed++;
+  centerImg.src = imgElTwo.src;
+  centerImg.alt = imgElTwo.name;
+  imgElTwo.viewed++;
+
+  rightImg.src = imgElThree.src;
+  rightImg.alt = imgElThree.name;
+  imgElThree.viewed++;
+
+  // leftImg.src = imgArray[renderQueue[0]].src;
+  // leftImg.alt = imgArray[renderQueue[0]].name;
+  // imgArray[renderQueue[0]].viewed++;
+
+  // centerImg.src = imgArray[renderQueue[1]].src;
+  // centerImg.alt = imgArray[renderQueue[1]].name;
+  // imgArray[renderQueue[1]].viewed++;
+
+  // rightImg.src = imgArray[renderQueue[2]].src;
+  // rightImg.alt = imgArray[renderQueue[2]].name;
+  // imgArray[renderQueue[2]].viewed++;
 }
 
 function renderList() {
@@ -120,7 +135,21 @@ function resultsChart() {
           'rgba(255, 206, 86, 0.2)',
           'rgba(75, 192, 192, 0.2)',
           'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)'
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
@@ -128,7 +157,21 @@ function resultsChart() {
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)'
         ],
         borderWidth: 1
       }]
