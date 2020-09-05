@@ -1,113 +1,91 @@
 'use strict';
 
-// ------------------------------- global variables ------------------------------- //
+// // ------------------------------- global variables ------------------------------- //
 
 var imgArray = [];
-// var renderQueue = [];
+var renderQueue = [];
 var leftImg = document.getElementById('image-1');
 var centerImg = document.getElementById('image-2');
 var rightImg = document.getElementById('image-3');
 var myContainer = document.getElementById('box');
 var myList = document.getElementById('list');
 var clicks = 0;
-var maxClicksAllowed = 5;
-
-// ------------------------------- local storage ------------------------------- //
-
-var retrievedImages = localStorage.getItem('busmall-images');
-if (retrievedImages) {
-  imgArray = JSON.parse(retrievedImages);
-} else {
-  new SaleItems('bag', './img/bag.jpg');
-  new SaleItems('banana', './img/banana.jpg');
-  new SaleItems('bathroom', './img/bathroom.jpg');
-  new SaleItems('boots', './img/boots.jpg');
-  new SaleItems('breakfast', './img/breakfast.jpg');
-  new SaleItems('bubblegum', './img/bubblegum.jpg');
-  new SaleItems('chair', './img/chair.jpg');
-  new SaleItems('cthulhu', './img/cthulhu.jpg');
-  new SaleItems('dog-duck', './img/dog-duck.jpg');
-  new SaleItems('dragon', './img/dragon.jpg');
-  new SaleItems('pen', './img/pen.jpg');
-  new SaleItems('pet-sweep', './img/pet-sweep.jpg');
-  new SaleItems('scissors', './img/scissors.jpg');
-  new SaleItems('shark', './img/shark.jpg');
-  new SaleItems('sweep', './img/sweep.png');
-  new SaleItems('tauntaun', './img/tauntaun.jpg');
-  new SaleItems('unicorn', './img/unicorn.jpg');
-  new SaleItems('usb', './img/usb.gif');
-  new SaleItems('water-can', './img/water-can.jpg');
-  new SaleItems('wine-glass', './img/wine-glass.jpg');
-}
+var maxClicksAllowed = 25;
 
 // -------------------------------  constructor ------------------------------- //
 
-function SaleItems(name, src) {
+function Img(name, src) {
   this.name = name;
   this.src = src;
   this.viewed = 0;
   this.clicked = 0;
   imgArray.push(this);
 }
+// ------------------------------- local storage ------------------------------- //
+
+var retrievedImg = localStorage.getItem('busmall-img');
+if (retrievedImg) {
+  imgArray = JSON.parse(retrievedImg);
+} else {
+  new Img('bag', './img/bag.jpg');
+  new Img('banana', './img/banana.jpg');
+  new Img('bathroom', './img/bathroom.jpg');
+  new Img('boots', './img/boots.jpg');
+  new Img('breakfast', './img/breakfast.jpg');
+  new Img('bubblegum', './img/bubblegum.jpg');
+  new Img('chair', './img/chair.jpg');
+  new Img('cthulhu', './img/cthulhu.jpg');
+  new Img('dog-duck', './img/dog-duck.jpg');
+  new Img('dragon', './img/dragon.jpg');
+  new Img('pen', './img/pen.jpg');
+  new Img('pet-sweep', './img/pet-sweep.jpg');
+  new Img('scissors', './img/scissors.jpg');
+  new Img('shark', './img/shark.jpg');
+  new Img('sweep', './img/sweep.png');
+  new Img('tauntaun', './img/tauntaun.jpg');
+  new Img('unicorn', './img/unicorn.jpg');
+  new Img('usb', './img/usb.gif');
+  new Img('water-can', './img/water-can.jpg');
+  new Img('wine-glass', './img/wine-glass.jpg');
+}
+
 
 // ------------------------------- functions ------------------------------- //
 
 function randomNumber() {
-  var num = Math.floor(Math.random() * Math.floor(imgArray.legnth));
+  var num = Math.floor(Math.random() * Math.floor(imgArray.length));
   return num;
 }
 
-// function createRenderQueue() {
-//   while (renderQueue.length > 3) {
-//     renderQueue.pop();
-//   }
-//   while (renderQueue.length < 6) {
-//     var i = randomNumber();
-//     while (renderQueue.includes(i)) {
-//       i = randomNumber();
-//     }
-//     renderQueue.unshift(i);
-//   }
-// }
-
-// function renderImages() {
-//   createRenderQueue();
-
-//   leftImg.src = imgArray[renderQueue[0]].src;
-//   leftImg.alt = imgArray[renderQueue[0]].name;
-//   imgArray[renderQueue[0]].viewed++;
-
-//   centerImg.src = imgArray[renderQueue[1]].src;
-//   centerImg.alt = imgArray[renderQueue[1]].name;
-//   imgArray[renderQueue[1]].viewed++;
-
-//   rightImg.src = imgArray[renderQueue[2]].src;
-//   rightImg.alt = imgArray[renderQueue[2]].name;
-//   imgArray[renderQueue[2]].viewed++;
-
-function renderImages() {
-  // createRenderQueue();
-  var imgOne = imgArray[randomNumber(imgArray.length)];
-  var imgTwo = imgArray[randomNumber(imgArray.length)];
-  while (imgOne === imgTwo) {
-    imgTwo = imgArray[randomNumber(imgArray.length)];
+function createRenderQueue() {
+  while (renderQueue.length > 3) {
+    renderQueue.pop();
   }
-  var imgThree = imgArray[randomNumber(imgArray.length)];
-  while (imgOne === imgThree, imgTwo === imgThree) {
-    imgThree = imgArray[randomNumber(imgArray.length)];
+  while (renderQueue.length < 6) {
+    var i = randomNumber(imgArray.length);
+    while (renderQueue.includes(i)) {
+      i = randomNumber(imgArray.length);
+    }
+    renderQueue.unshift(i);
   }
-  leftImg.src = imgOne.src;
-  centerImg.src = imgTwo.src;
-  rightImg.src = imgThree.src;
-  leftImg.alt = imgOne.name;
-  centerImg.alt = imgTwo.name;
-  rightImg.alt = imgThree.name;
-  imgOne.views++;
-  imgTwo.views++;
-  imgThree.views++;
+  console.log(renderQueue);
 }
 
-// }
+function renderimg() {
+  createRenderQueue();
+
+  leftImg.src = imgArray[renderQueue[0]].src;
+  leftImg.alt = imgArray[renderQueue[0]].name;
+  imgArray[renderQueue[0]].viewed++;
+
+  centerImg.src = imgArray[renderQueue[1]].src;
+  centerImg.alt = imgArray[renderQueue[1]].name;
+  imgArray[renderQueue[1]].viewed++;
+
+  rightImg.src = imgArray[renderQueue[2]].src;
+  rightImg.alt = imgArray[renderQueue[2]].name;
+  imgArray[renderQueue[2]].viewed++;
+}
 
 function renderList() {
   for (var i = 0; i < imgArray.length; i++) {
@@ -184,14 +162,14 @@ function eventHandler(event) {
     }
   }
 
-  renderImages();
+  renderimg();
 
   if (clicks === maxClicksAllowed) {
     myContainer.removeEventListener('click', eventHandler);
     renderList();
     resultsChart();
-    var stringifiedImages = JSON.stringify(imgArray);
-    localStorage.setItem('busmall-images', stringifiedImages);
+    var stringifiedimg = JSON.stringify(imgArray);
+    localStorage.setItem('busmall-img', stringifiedimg);
   }
 }
 
@@ -199,7 +177,35 @@ function eventHandler(event) {
 
 myContainer.addEventListener('click', eventHandler);
 
-// ------------------------------- end bus-mall ------------------------------- //
+// // ------------------------------- end bus-mall ------------------------------- //
+
+// // --------------------------------------------------------------------------------- //
+
+// // --------------------------------------------------------------------------------- //
+
+// // --------------------------------------------------------------------------------- //
+
+// // --------------------------------------------------------------------------------- //
+
+// // --------------------------------------------------------------------------------- //
+
+// // --------------------------------------------------------------------------------- //
+
+// // ------------------------------ attempt number 1 --------------------------------- //
+
+// // --------------------------------------------------------------------------------- //
+
+// // --------------------------------------------------------------------------------- //
+
+// // --------------------------------------------------------------------------------- //
+
+// // --------------------------------------------------------------------------------- //
+
+// // --------------------------------------------------------------------------------- //
+
+// // --------------------------------------------------------------------------------- //
+
+// // --------------------------------------------------------------------------------- //
 
 
 
@@ -215,7 +221,7 @@ myContainer.addEventListener('click', eventHandler);
 
 
 
-// function SaleItems(name, src) {
+// function Img(name, src) {
 //   this.views = 0;
 //   this.clicks = 0;
 //   this.name = name;
@@ -225,26 +231,26 @@ myContainer.addEventListener('click', eventHandler);
 
 // }
 
-// new SaleItems('bag', './img/bag.jpg');
-// new SaleItems('banana', './img/banana.jpg');
-// new SaleItems('bathroom', './img/bathroom.jpg');
-// new SaleItems('boots', './img/boots.jpg');
-// new SaleItems('breakfast', './img/breakfast.jpg');
-// new SaleItems('bubblegum', './img/bubblegum.jpg');
-// new SaleItems('chair', './img/chair.jpg');
-// new SaleItems('cthulhu', './img/cthulhu.jpg');
-// new SaleItems('dog-duck', './img/dog-duck.jpg');
-// new SaleItems('dragon', './img/dragon.jpg');
-// new SaleItems('pen', './img/pen.jpg');
-// new SaleItems('pet-sweep', './img/pet-sweep.jpg');
-// new SaleItems('scissors', './img/scissors.jpg');
-// new SaleItems('shark', './img/shark.jpg');
-// new SaleItems('sweep', './img/sweep.png');
-// new SaleItems('tauntaun', './img/tauntaun.jpg');
-// new SaleItems('unicorn', './img/unicorn.jpg');
-// new SaleItems('usb', './img/usb.gif');
-// new SaleItems('water-can', './img/water-can.jpg');
-// new SaleItems('wine-glass', './img/wine-glass.jpg');
+// new Img('bag', './img/bag.jpg');
+// new Img('banana', './img/banana.jpg');
+// new Img('bathroom', './img/bathroom.jpg');
+// new Img('boots', './img/boots.jpg');
+// new Img('breakfast', './img/breakfast.jpg');
+// new Img('bubblegum', './img/bubblegum.jpg');
+// new Img('chair', './img/chair.jpg');
+// new Img('cthulhu', './img/cthulhu.jpg');
+// new Img('dog-duck', './img/dog-duck.jpg');
+// new Img('dragon', './img/dragon.jpg');
+// new Img('pen', './img/pen.jpg');
+// new Img('pet-sweep', './img/pet-sweep.jpg');
+// new Img('scissors', './img/scissors.jpg');
+// new Img('shark', './img/shark.jpg');
+// new Img('sweep', './img/sweep.png');
+// new Img('tauntaun', './img/tauntaun.jpg');
+// new Img('unicorn', './img/unicorn.jpg');
+// new Img('usb', './img/usb.gif');
+// new Img('water-can', './img/water-can.jpg');
+// new Img('wine-glass', './img/wine-glass.jpg');
 
 // console.log(imgArray);
 
